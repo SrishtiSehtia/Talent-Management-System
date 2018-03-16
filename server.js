@@ -1,3 +1,4 @@
+
 var express = require('express');
 var path = require('path');
 var mongoose = require('mongoose');
@@ -34,4 +35,18 @@ res.render('login');
 // Server Started
 app.listen(3000, function() {
   console.log('server started on port 3000....');
+
+var express=require('express');
+var app=express();
+
+app.get('/',function(req,res){
+
+  
+
+
+});
+app.listen('3000',function(){
+  console.log('i am running here');
+
+  
 });
