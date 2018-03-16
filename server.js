@@ -19,28 +19,16 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 // Home Route
-app.get('/', function(req, res) {
-  res.render('index');
-});
-
-app.get('/api/students', function (req, res) {
-  console.log("I work")
-  Student.find()
-  .exec(function(err, allStudents){
-    if (err) {return console.log("index error:" + err); }
-    res.json(allStudents);
+app.get("/", function (req, res) {
+  Student.find(function (err, allStudents) {
+    if (err) {
+      res.status(500).json({ error: err.message, });
+    } else {
+      console.log(allStudents);
+      res.render("index", { students: allStudents});
+    }
   });
 });
-
-// app.get("/", function (req, res) {
-//   Student.find(function (err, allStudents) {
-//     if (err) {
-//       res.status(500).json({ error: err.message, });
-//     } else {
-//       res.render("index", { students: allStudents});
-//     }
-//   });
-// });
 
 //Add Route
 app.get('/signup', function(req, res) {
@@ -50,6 +38,16 @@ app.get('/signup', function(req, res) {
 //Add Route
 app.get('/login', function(req, res) {
   res.render('login');
+});
+
+// API ROUTES
+app.get('/api/students', function (req, res) {
+  console.log("I work")
+  Student.find()
+  .exec(function(err, allStudents){
+    if (err) {return console.log("index error:" + err); }
+    res.json(allStudents);
+  });
 });
 
 // Server Started
