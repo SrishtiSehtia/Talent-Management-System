@@ -14,39 +14,25 @@ var app = express();
 app.use(expressLayouts);
 
 //Load View Engine
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 // Home Route
 app.get('/', function(req, res) {
-res.render('index');
+  res.render('index');
 });
 
 //Add Route
 app.get('/signup', function(req, res) {
-res.render('signup');
+  res.render('signup');
 });
 
 //Add Route
 app.get('/login', function(req, res) {
-res.render('login');
+  res.render('login');
 });
 
 // Server Started
-app.listen(3000, function() {
-  console.log('server started on port 3000....');
-
-var express=require('express');
-var app=express();
-
-app.get('/',function(req,res){
-
-  
-
-
-});
-app.listen('3000',function(){
-  console.log('i am running here');
-
-  
+app.listen(process.env.PORT || 3000, function () {
+  console.log('Express server is up and running on http://localhost:3000/');
 });
