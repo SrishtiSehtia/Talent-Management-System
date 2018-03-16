@@ -5,9 +5,6 @@ var mongoose = require('mongoose');
 var expressLayouts = require('express-ejs-layouts');
 
 
-mongoose.connect('mongod://localhost/Talent-Management-System');
-var db = mongoose.connection;
-
 //Init App
 var app = express();
 
