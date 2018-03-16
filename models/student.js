@@ -1,14 +1,14 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema,
-    passportLocalMongoose = require('passport-local-mongoose');
+    Schema = mongoose.Schema;
+    // passportLocalMongoose = require('passport-local-mongoose');
 
 var StudentSchema = new Schema({
   email: String,
   password: String,
-  role: String;
+  role: String
 });
 
-StudentSchema.plugin(passportLocalMongoose);
+// StudentSchema.plugin(passportLocalMongoose);
 
 var Student = mongoose.model('Student', StudentSchema);
 module.exports = Student;
