@@ -5,6 +5,10 @@ var mongoose = require('mongoose');
 var expressLayouts = require('express-ejs-layouts');
 
 
+var db = require("./models"),
+    Student = db.Student,
+    Course = db.Course;
+
 //Init App
 var app = express();
 
@@ -18,6 +22,25 @@ app.set('view engine', 'ejs');
 app.get('/', function(req, res) {
   res.render('index');
 });
+
+app.get('/api/students', function (req, res) {
+  console.log("I work")
+  Student.find()
+  .exec(function(err, allStudents){
+    if (err) {return console.log("index error:" + err); }
+    res.json(allStudents);
+  });
+});
+
+// app.get("/", function (req, res) {
+//   Student.find(function (err, allStudents) {
+//     if (err) {
+//       res.status(500).json({ error: err.message, });
+//     } else {
+//       res.render("index", { students: allStudents});
+//     }
+//   });
+// });
 
 //Add Route
 app.get('/signup', function(req, res) {
