@@ -2,14 +2,20 @@ var db = require('./models');
 
 var students = [
   {
+    FirstName: "DJ",
+    LastName: "JD",
     email: "student1@gmail.com",
     password: "123"
   } ,
   {
+    FirstName: "Halim",
+    LastName: "Apple",
     email: "student2@gmail.com",
     password: "456"
   } ,
   {
+    FirstName: "Terrence",
+    LastName: "Goku",
     email: "student3@gmail.com",
     password: "789"
   }
