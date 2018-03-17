@@ -50,7 +50,7 @@ app.get('/api/students', function (req, res) {
   });
 });
 
-app.get()
+
 
 // Server Started
 app.listen(process.env.PORT || 3000, function () {
