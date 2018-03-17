@@ -1,8 +1,15 @@
 <!-- <script src= "/public/scripts/app.js"></script> -->
 <h1>Hello </h1>
+
+<button type="button" name="button">Show All Student</button>
+
 <ul>
 <% students.forEach(function(val){ %>
-<li><%= val.email %></li>
+<li><%= val.FirstName%> <%= val.LastName%></li>
+<button type="button" name="button">Edit</button>
+<button type="button" name="button">Delete</button>
 
 <% }); %>
 </ul>
+
+<button type="button" name="button">Add</button>
