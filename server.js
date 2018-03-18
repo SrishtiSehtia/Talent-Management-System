@@ -26,7 +26,7 @@ app.get("/", function (req, res) {
       res.status(500).json({ error: err.message, });
     } else {
       console.log(allStudents);
-      res.render("index", { students: allStudents});
+      res.render("home", { students: allStudents});
     }
   });
 });
