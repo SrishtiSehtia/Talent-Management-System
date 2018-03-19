@@ -24,24 +24,24 @@ var students = [
 
 var courses = [
   {
-    name: "Class 1",
-    description: "Awesome class about tech",
-    category: "Web"
+    Name: "Class 1",
+    Description: "Awesome class about tech",
+    Category: "Web"
   },
   {
-    name: "Class 2",
-    description: "Awesome class about Illustrator",
-    category: "Digital Arts"
+    Name: "Class 2",
+    Description: "Awesome class about Illustrator",
+    Category: "Digital Arts"
   },
   {
-    name: "Class 3",
-    description: "Awesome class about managing group",
-    category: "Leadership"
+    Name: "Class 3",
+    Description: "Awesome class about managing group",
+    Category: "Leadership"
   },
   {
-    name: "Class 4",
-    description: "Awesome class about React",
-    category: "Web"
+    Name: "Class 4",
+    Description: "Awesome class about React",
+    Category: "Web"
   },
 ];
 
