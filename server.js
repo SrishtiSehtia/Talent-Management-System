@@ -20,13 +20,19 @@ app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
 // Home Route
-app.get("/", function (req, res) {
+
+app.get('/', function (req, res) {
+  res.sendFile('views/index.html' , { root : __dirname});
+});
+
+
+app.get("/students", function (req, res) {
   Student.find(function (err, allStudents) {
     if (err) {
       res.status(500).json({ error: err.message, });
     } else {
       console.log(allStudents);
-      res.render("home", { students: allStudents});
+      res.render("index", { students: allStudents});
     }
   });
 });
