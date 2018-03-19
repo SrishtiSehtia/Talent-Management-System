@@ -19,6 +19,7 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
+
 // Home Route
 
 app.get('/', function (req, res) {
@@ -37,14 +38,41 @@ app.get("/students", function (req, res) {
   });
 });
 
-//Add Route
-app.get('/signup', function(req, res) {
-  res.render('signup');
+
+
+
+
+// get Route
+app.get('/courses', function(req, res) {
+  Course.find(function (err, allCourses) {
+    if (err){
+      res.status(500).json({ error: err.message});
+    } else {
+      console.log(allCourses);
+      res.render("index", { courses: allCourses});
+    }
+  });
 });
 
-//Add Route
-app.get('/login', function(req, res) {
-  res.render('login');
+
+
+// API ROUTES
+//get all students
+app.get('/api/students', function (req, res) {
+  console.log("I work")
+  Student.find()
+  .exec(function(err, allStudents){
+    if (err) {return console.log("index error:" + err); }
+    res.json(allStudents);
+  });
+});
+
+// get one students
+app.get('/api/students/:id', function (req, res){
+  console.log("one student");
+  Student.findOne({_id: req.params.id }, function(err, data){
+    res.json(data);
+  });
 });
 
 //create a student
@@ -100,26 +128,70 @@ app.delete('/api/students/:id', function(req, res){
   });
 });
 
-
-// API ROUTES
-//get all students
-app.get('/api/students', function (req, res) {
-  console.log("I work")
-  Student.find()
-  .exec(function(err, allStudents){
+//get all courses
+app.get('/api/courses', function (req, res){
+  console.log("I work for courses");
+  Course.find()
+  .exec(function(err, allCourses){
     if (err) {return console.log("index error:" + err); }
-    res.json(allStudents);
+    res.json(allCourses);
   });
 });
 
-// one students
-app.get('/api/students/:id', function (req, res){
-  console.log("one student");
-  Student.findOne({_id: req.params.id }, function(err, data){
+//get one course
+app.get('/api/courses/:id', function (req,res){
+  console.log("I work for one class");
+  Course.find()
+  Course.findOne({_id: req.params.id }, function (err, data) {
     res.json(data);
+  })
+})
+
+
+// post
+app.post('/api/courses', function(req, res){
+  Course.create({
+    Name:req.body.Name,
+    Description:req.body.Description,
+    Category: req.body.Category
+    },function (err, course){
+      if(err){
+        res.status(500);
+      }else
+    res.status(200).json(course);
   });
 });
+//put
+app.put('/api/courses/:id', function(req, res){
+  var courseId = req.params.id;
+  Course.findOne({_id: courseId}, function (err, currentCourse){
+    if(err){
+      res.status(500).json("Course doesnt exist");
+    }
+    currentCourse.Name =  req.body.Name || currentCourse.Name;
+    currentCourse.Description = req.body.Description || currentCourse.Description;
+    currentCourse.Category = req.body.Category || currentCourse.Category;
 
+    currentCourse.save(function(err,updated){
+      if(err){
+        res.status(500).json("course can't be updated");
+        throw err;
+      }
+      res.status(200).json(updated);
+    });
+  });
+});
+// delete
+
+app.delete('/api/courses/:id', function(req, res){
+  var courseId = req.params.id;
+  Course.findOneAndRemove({_id: courseId}, function (err, deletedCourse){
+    if(err){
+      res.status(500);
+    }
+    res.status(200).json(deletedCourse);
+  });
+});
 
 
 // Server Started
