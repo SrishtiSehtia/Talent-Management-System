@@ -109,7 +109,7 @@ app.get('/api/students', function (req, res) {
   });
 });
 
-// one students
+// get one students
 app.get('/api/students/:id', function (req, res){
   console.log("one student");
   Student.findOne({_id: req.params.id }, function(err, data){
@@ -117,7 +117,24 @@ app.get('/api/students/:id', function (req, res){
   });
 });
 
+//get all courses
+app.get('/api/courses', function (req, res){
+  console.log("I work for courses");
+  Course.find()
+  .exec(function(err, allCourses){
+    if (err) {return console.log("index error:" + err); }
+    res.json(allCourses);
+  });
+});
 
+//get one course
+app.get('/api/courses/:id', function (req,res){
+  console.log("I work for one class");
+  Course.find()
+  Course.findOne({_id: req.params.id }, function (err, data) {
+    res.json(data);
+  })
+})
 
 // Server Started
 app.listen(process.env.PORT || 3000, function () {
