@@ -19,8 +19,13 @@ app.use(bodyParser.urlencoded({ extended: true}));
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
+
 // Home Route
-app.get("/", function (req, res) {
+app.get('/', function (req, res) {
+  res.sendFile('views/index.html' , { root : __dirname});
+});
+
+app.get("/students", function (req, res) {
   Student.find(function (err, allStudents) {
     if (err) {
       res.status(500).json({ error: err.message, });
@@ -31,12 +36,10 @@ app.get("/", function (req, res) {
   });
 });
 
-//Add Route
 app.get('/signup', function(req, res) {
   res.render('signup');
 });
 
-//Add Route
 app.get('/login', function(req, res) {
   res.render('login');
 });
