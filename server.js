@@ -12,47 +12,48 @@ var db = require("./models"),
 
 //Init App
 var app = express();
-
+app.use(express.static('public'));
 app.use(expressLayouts);
 app.use(bodyParser.urlencoded({ extended: true}));
 //Load View Engine
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
-
 // Home Route
-
 app.get('/', function (req, res) {
   res.sendFile('views/index.html' , { root : __dirname});
 });
 
-
-app.get("/students", function (req, res) {
+app.get('/students', function (req, res) {
   Student.find(function (err, allStudents) {
     if (err) {
       res.status(500).json({ error: err.message, });
     } else {
       console.log(allStudents);
-      res.render("index", { students: allStudents});
+      Course.find(function (err, allCourses) {
+        if (err){
+          res.status(500).json({ error: err.message});
+        } else {
+          console.log(allCourses);
+          console.log("Courses in index")
+          res.render("index", { courses: allCourses, students: allStudents});
+        }
+      });
     }
   });
+
 });
 
-
-
-
-
-// get Route
-app.get('/courses', function(req, res) {
-  Course.find(function (err, allCourses) {
-    if (err){
-      res.status(500).json({ error: err.message});
-    } else {
-      console.log(allCourses);
-      res.render("index", { courses: allCourses});
-    }
-  });
-});
+// app.get('/courses', function(req, res) {
+//   Course.find(function (err, allCourses) {
+//     if (err){
+//       res.status(500).json({ error: err.message});
+//     } else {
+//       console.log(allCourses);
+//       res.render("index", { courses: allCourses});
+//     }
+//   });
+// });
 
 
 
@@ -74,6 +75,7 @@ app.get('/api/students/:id', function (req, res){
     res.json(data);
   });
 });
+
 
 //create a student
 app.post('/api/students', function(req, res){

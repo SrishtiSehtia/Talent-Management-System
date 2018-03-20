@@ -1,26 +1,64 @@
-<!-- <script src= "/public/scripts/app.js"></script> -->
+<script src= "/scripts/ok.js"></script>
+
+<div class="container">
 <h1>Hello </h1>
 
-<button type="button" name="button">Show All Student</button>
 
-<ul>
+<button  class="btn btn-primary" type="button" name="button" id='show_all_students'>Show All Student</button>
+<button class="mb-5 btn btn-success" type="button" name="button" id='show_all_classes'>Show All Classes</button>
+
+
+
+<div class='students'>
+
+  <form action=""id="student_form" class="form-inline" method="POST">
+    <label class="sr-only" for="inlineFormInput">Name</label>
+    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput"  name="FirstName" placeholder="First Name">
+
+    <label class="sr-only" for="inlineFormInputGroup">Last Name</label>
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+      <div class="input-group"></div>
+      <input type="text" class="form-control" id="inlineFormInputGroup" name="LastName" placeholder="Last Name">
+    </div>
+
+    <button id="new_student" type="submit" class="btn btn-primary">Submit</button>
+  </form>
+<ul >
 <% students.forEach(function(val){ %>
-<li><%= val.FirstName%> <%= val.LastName%></li>
-<button type="button" name="button">Edit</button>
-<button type="button" name="button">Delete</button>
-
+<li id='<%=val._id %>'><%= val.FirstName%> <%= val.LastName%>
+<button type="button" name="button" class="btn btn-primary">Edit</button>
+<button class="btn btn-primary delete" type="button" name="button" data-id='<%= val._id %>' data-type='/api/students/' >Delete</button>
+</li>
 <% }); %>
 </ul>
-
-<button type="button" name="button">Add</button>
-
+</div>
 
 
-<ul>
+<div class='classes'>
+
+  <form action=""id="course_form" class="form-inline" method="POST">
+    <label class="sr-only" for="inlineFormInput">Name</label>
+    <input type="text" class="form-control mb-2 mr-sm-2 mb-sm-0" id="inlineFormInput"  name="Name" placeholder="course name">
+
+    <label class="sr-only" for="inlineFormInputGroup">Last Name</label>
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+      <div class="input-group"></div>
+      <input type="text" class="form-control" id="inlineFormInputGroup" name="Description" placeholder="description">
+    </div>
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+      <div class="input-group"></div>
+      <input type="text" class="form-control" id="inlineFormInputGroup" name="Category" placeholder="category">
+    </div>
+
+    <button id="new_student" type="submit" class="btn btn-primary">Submit</button>
+  </form>
+<ul >
 <% courses.forEach(function(val){ %>
-<li><%= val.Name%> <%= val.Description%></li>
+<li id='<%=val._id %>'><%= val.Name%> <%= val.Description%>
 <button type="button" name="button">Edit</button>
-<button type="button" name="button">Delete</button>
-
+<button type="button" name="button" data-id='<%= val._id %>' data-type='/api/courses/' class='delete'>Delete</button>
+</li>
 <% }); %>
 </ul>
+</div>
+</div>
