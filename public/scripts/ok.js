@@ -46,7 +46,7 @@ $('#student_form').on('submit', function(e) {
     data: $(this).serializeArray(),
     success: function(response) {
       console.log(response);
-      $('students ul').append(`<li id='${response._id}'>${response.FirstName} ${response.LastName}
+      $('.students ul').append(`<li id='${response._id}'>${response.FirstName} ${response.LastName}
       <button type="button" name="button" class="btn btn-primary">Edit</button>
       <button class="btn btn-primary delete" type="button" name="button" data-id='${response._id}' data-type='/api/students/' >Delete</button>
       </li>`)
