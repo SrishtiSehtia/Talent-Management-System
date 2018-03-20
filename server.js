@@ -28,6 +28,7 @@ app.get('/', function (req, res) {
 });
 
 app.get('/students', function (req, res) {
+  console.log("hello student");
   Student.find(function (err, allStudents) {
     if (err) {
       res.status(500).json({ error: err.message, });
