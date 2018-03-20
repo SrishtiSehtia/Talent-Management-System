@@ -145,8 +145,13 @@ body {
  background: linear-gradient(to right top, #f4f5f2, #dbecd6, #b6e5c2, #84deb9, #25d6bc) no-repeat center center fixed;
 }
 
+.pagebody {
+  float: right;
+}
 
-
+.clearfix {
+  overflow: auto;
+}
 
 .container{
   text-align: center;
