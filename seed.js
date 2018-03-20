@@ -2,23 +2,37 @@ var db = require('./models');
 
 var students = [
   {
-    FirstName: "DJ",
-    LastName: "JD",
-    email: "student1@gmail.com",
+    FirstName: "DJ", LastName: "JD", email: "student1@gmail.com",
     password: "123"
   } ,
   {
-    FirstName: "Halim",
-    LastName: "Apple",
-    email: "student2@gmail.com",
-    password: "456"
+    FirstName: "Halim", LastName: "Apple", email: "student2@gmail.com",
+     password: "456"
   } ,
   {
-    // FirstName: "Terrence",
-    LastName: "Goku",
-    email: "student3@gmail.com",
+    FirstName: "Gohan",LastName: "Go", email: "student3@gmail.com",
     password: "789"
-  }
+  },
+  {
+    FirstName: "Tomas",LastName: "Vargas", email: "student3@gmail.com",
+    password: "789"
+  },
+  {
+    FirstName: "Luis",LastName: "Vargas", email: "student3@gmail.com",
+    password: "789"
+  },
+  {
+    FirstName: "Desiree",LastName: "Leader", email: "student3@gmail.com",
+    password: "789"
+  },
+  {
+    FirstName: "Ania",LastName: "LCF", email: "student3@gmail.com",
+    password: "789"
+  },
+  {
+    FirstName: "Srishti",LastName: "Good", email: "student3@gmail.com",
+    password: "789"
+  },
 ];
 
 
@@ -39,9 +53,24 @@ var courses = [
     Category: "Leadership"
   },
   {
-    Name: "Class 4",
+    Name: "C++",
     Description: "Awesome class about React",
     Category: "Web"
+  },
+];
+
+var enrollment = [
+  {
+    courseId: "1",
+    studentId: "Apple"
+  },
+  {
+    courseId:"2",
+    studentId: "Orange"
+  },
+  {
+    courseId:"3",
+    studentId:"Bannan"
   },
 ];
 
@@ -87,3 +116,25 @@ db.Course.remove({}, function(err, removed) {
   }
 
 });
+
+
+/////
+db.Enrollment.remove({}, function(err, removed) {
+  if(err){
+    throw err;
+  }
+  console.log('removed all Enrollment');
+  db.Enrollment.create(enrollment,function(err, all_enrollment){
+    if (err){
+      return console.log("Error:", err);
+    }
+    else{
+      console.log('enrollment    '+all_enrollment);
+      console.log('recreated all enrollment');
+      console.log("created "+all_enrollment.length+ " enrollment");
+}
+    // console.log("Created new ", project._id)
+  });
+});
+
+// student 0, id, with course 0 and id

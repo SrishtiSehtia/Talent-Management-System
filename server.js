@@ -8,13 +8,16 @@ var expressLayouts = require('express-ejs-layouts');
 
 var db = require("./models"),
     Student = db.Student,
-    Course = db.Course;
+    Course = db.Course,
+    Enrollment = db.Enrollment;
 
 //Init App
 var app = express();
 app.use(express.static('public'));
 app.use(expressLayouts);
 app.use(bodyParser.urlencoded({ extended: true}));
+
+
 //Load View Engine
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
@@ -41,7 +44,19 @@ app.get('/students', function (req, res) {
       });
     }
   });
+});
 
+
+// get Route
+app.get('/courses', function(req, res) {
+  Course.find(function (err, allCourses) {
+    if (err){
+      res.status(500).json({ error: err.message});
+    } else {
+      console.log(allCourses);
+      res.render("index", { courses: allCourses});
+    }
+  });
 });
 
 // app.get('/courses', function(req, res) {
@@ -56,8 +71,89 @@ app.get('/students', function (req, res) {
 // });
 
 
+// //find all classes a student took
+// db.Enrollment.find({_user: userID}, function(err, succ){
+//   succ
+//     .populate('class')
+//     .exec(function(err, succ){
+//
+//     })
+// })
 
 // API ROUTES
+
+//get all enrollment
+app.get('/api/enrollment', function (req,res){
+  console.log("I work for enrolment");
+  Enrollment.find({}, (err, succ) => {res.json(succ);})
+  // var userID = req.body.userId;
+  // var courseId = req.body.courseId;
+  // var crs_for_std = Enrollment.find({studentId});
+  // var std_in_crs = Enrollment.find({courseId});
+  // var addEnrollment = newEnrollment({courseID});
+  // var dropEnrollment = Enrollment.remove({studentId})
+});
+
+
+
+
+// get all courses that a student has
+// This route expects the student and course id to be included
+app.get('/api/enrollment/students/:studentId', function(req,res){
+  console.log("I work enrollment student");
+  var studentId = req.params.studentId;
+  Enrollment.find({_student: studentId}).populate('_course').exec(function(err,all){
+    res.json(all);
+  });
+});
+////////////////////////*******KAY********///////////////////////////////////
+//get all students that in one course
+app.get('/api/enrollment/courses/:courseId', function(req,res){
+  console.log("I work enrollment course");
+  console.log(courseId);
+  var courseId = req.params.courseId;
+  Enrollment.find({_course: courseId}).populate('_student').exec(function(err,all){
+    res.json(all);
+  });
+});
+//////////////////////////////////////////////////////////////////
+
+
+//get all enrollment objects
+app.post('/api/enrollment', function (req,res){
+  // res.send("Apple");
+  console.log("I work in creating enrollment list");
+  Enrollment.create({
+    _course: req.body.courseId,
+    _student: req.body.studentId
+  },function(err, succ){
+    if(err,succ){
+        res.status(500).send(err);
+      }else
+    // res.status(200).send(JSON.stringify(succ));
+    res.status(200).json(succ);
+   });
+});
+
+
+app.put('/api/enrollment/courses/:id'), function (rec, res){
+  console.log("Creating a new ");
+}
+
+
+//delete enrollment
+app.delete('/api/enrollment/:id', function(req, res){
+  console.log('enrollment deleted', req.params);
+  var enrollmentId = req.params.id;
+  Enrollment.findOneAndRemove({_id: enrollmentId}, function(err, deletedEnrollment){
+    if(err){
+      res.status(500);
+    }
+    res.status(200).json(deletedEnrollment)
+  });
+});
+
+
 //get all students
 app.get('/api/students', function (req, res) {
   console.log("I work")
@@ -94,6 +190,7 @@ app.post('/api/students', function(req, res){
   });
 });
 
+//update student
 app.put('/api/students/:id', function(req, res){
   console.log('i am here');
   var studentId = req.params.id;
@@ -119,6 +216,8 @@ app.put('/api/students/:id', function(req, res){
   });
 });
 
+
+//delete student
 app.delete('/api/students/:id', function(req, res){
   console.log('student deleted', req.params);
   var studentId = req.params.id;
@@ -150,7 +249,7 @@ app.get('/api/courses/:id', function (req,res){
 })
 
 
-// post
+//create one course
 app.post('/api/courses', function(req, res){
   Course.create({
     Name:req.body.Name,
@@ -163,7 +262,9 @@ app.post('/api/courses', function(req, res){
     res.status(200).json(course);
   });
 });
-//put
+
+
+//update course
 app.put('/api/courses/:id', function(req, res){
   var courseId = req.params.id;
   Course.findOne({_id: courseId}, function (err, currentCourse){
@@ -183,8 +284,9 @@ app.put('/api/courses/:id', function(req, res){
     });
   });
 });
-// delete
 
+
+// delete a course
 app.delete('/api/courses/:id', function(req, res){
   var courseId = req.params.id;
   Course.findOneAndRemove({_id: courseId}, function (err, deletedCourse){
