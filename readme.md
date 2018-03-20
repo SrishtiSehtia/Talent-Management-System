@@ -2,10 +2,6 @@
 
 ## Wire Frames and User Stories
 We used Sketch for our wireframes and drew out a detailed view for each page including future features.
-[Link to Trello](https://trello.com/b/44xin9Eo/shred-x "Shred-X Trello Page")
-
-Here's what the homepage will look like (top)
-![alt text](/assets/images/homepage.jpg)
 ***
 
 ## Getting Started
