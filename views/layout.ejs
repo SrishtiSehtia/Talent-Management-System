@@ -14,88 +14,84 @@
 
   </head>
   <body>
-
-    <%- body %>
     <div class="nav-side-menu">
-   <div class="brand">TMS</div>
-   <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+      <div class="brand">TMS</div>
+      <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+      <div class="menu-list">
+        <ul id="menu-content" class="menu-content collapse out">
+           <li>
+             <a href="#">
+             <i class="fa fa-dashboard fa-lg"></i> Dashboard
+             </a>
+           </li>
 
-       <div class="menu-list">
-
-           <ul id="menu-content" class="menu-content collapse out">
-               <li>
-                 <a href="#">
-                 <i class="fa fa-dashboard fa-lg"></i> Dashboard
-                 </a>
-               </li>
-
-               <li  data-toggle="collapse" data-target="#products" class="collapsed active">
-                 <a href="#"><i class="fa fa-graduation-cap fa-lg"></i> <span class="arrow">Courses</span></a>
-               </li>
-               <ul class="sub-menu collapse" id="products">
-                   <li class="active"><a href="#">CSS3 Animation</a></li>
-                   <li><a href="#">Computer Science</a></li>
-                   <li><a href="#">Art</a></li>
-                   <li><a href="#">Leadership</a></li>
-                   <li><a href="#">Design</a></li>
-               </ul>
-
-
-               <li data-toggle="collapse" data-target="#service" class="collapsed">
-                 <a href="#"><i class="fa fa-id-badge fa-lg"></i> Students <span class="arrow"></span></a>
-               </li>
-               <ul class="sub-menu collapse" id="service">
-
-               </ul>
-
-
-               <li data-toggle="collapse" data-target="#new" class="collapsed">
-                 <a href="#"><i class="fa fa-mouse-pointer fa-lg"></i> New <span class="arrow"></span></a>
-               </li>
-               <ul class="sub-menu collapse" id="new">
-                 <li>New New</li>
-               </ul>
-
-
-                <li>
-                 <a href="#">
-                 <i class="fa fa-user fa-lg"></i> Profile
-                 </a>
-                 </li>
-
-                <li>
-                 <a href="#">
-                 <i class="fa fa-users fa-lg"></i> Users
-                 </a>
-               </li>
+           <li  data-toggle="collapse" data-target="#products" class="collapsed active">
+             <a href="#"><i class="fa fa-graduation-cap fa-lg"></i> <span class="arrow">Courses</span></a>
+           </li>
+           <ul class="sub-menu collapse" id="products">
+               <li class="active"><a href="#">CSS3 Animation</a></li>
+               <li><a href="#">Computer Science</a></li>
+               <li><a href="#">Art</a></li>
+               <li><a href="#">Leadership</a></li>
+               <li><a href="#">Design</a></li>
            </ul>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <br>
-           <li class="text-center">
-            <i class="fa fa-linkedin fa-2x mr-5"></i>
-            <i class="fa fa-twitter fa-2x mr-5"></i>
-            <i class="fa fa-github fa-2x"></i>
-          </li>
-          <div class="text-center">
-            <li>Abot Us</li>
-            <li>Contact</li>
-            <li>Blog</li>
+
+
+                 <li data-toggle="collapse" data-target="#service" class="collapsed">
+                   <a href="#"><i class="fa fa-id-badge fa-lg"></i> Students <span class="arrow"></span></a>
+                 </li>
+                 <ul class="sub-menu collapse" id="service">
+
+                 </ul>
+
+
+                 <li data-toggle="collapse" data-target="#new" class="collapsed">
+                   <a href="#"><i class="fa fa-mouse-pointer fa-lg"></i> New <span class="arrow"></span></a>
+                 </li>
+                 <ul class="sub-menu collapse" id="new">
+                   <li>New New</li>
+                 </ul>
+
+
+                  <li>
+                   <a href="#">
+                   <i class="fa fa-user fa-lg"></i> Profile
+                   </a>
+                   </li>
+
+                  <li>
+                   <a href="#">
+                   <i class="fa fa-users fa-lg"></i> Users
+                   </a>
+                 </li>
+             </ul>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <br>
+             <li class="text-center">
+              <i class="fa fa-linkedin fa-2x mr-5"></i>
+              <i class="fa fa-twitter fa-2x mr-5"></i>
+              <i class="fa fa-github fa-2x"></i>
+            </li>
+            <div class="text-center">
+              <li>Abot Us</li>
+              <li>Contact</li>
+              <li>Blog</li>
+            </div>
+
           </div>
-
     </div>
-</div>
-
+    <div class="pagebody .clearfix"><%- body %></div>
   </body>
 </html>
