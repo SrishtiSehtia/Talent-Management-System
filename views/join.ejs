@@ -1,14 +1,25 @@
 <script src= "/scripts/join.js"></script>
+<div class="container">
+
 
 <h1>hello world</h1>
 
-<ul class="formPadding">
-    <% enrollment.forEach(function(val){ %>
-    <li id='<%=val._id %>'><%= val._course%> <%= val._student%>
-      <div class="">
-      <button type="button" name="button" class="btn btn-primary">Edit</button>
-      <button class="btn btn-primary delete" type="button" name="button" data-id='<%= val._id %>' data-type='/api/students/' >Delete</button>
-    </div>
-    </li>
-    <% }); %>
-</ul>
+    <form class="" action="/api/enrollments" method="post">
+      <select name="studentId">
+        <!-- <option value="volvo">Volvo</option> -->
+        <% students.forEach(function(val){ %>
+          <option value="<%= val._id %>"> <%= val.FirstName + " " + val.LastName %></option>
+        <% }); %>
+
+      </select>
+      <select name="courseId">
+        <!-- <option value="volvo">Volvo</option> -->
+        <% courses.forEach(function(val){ %>
+          <option value="<%= val._id %>"> <%= val.Name %></option>
+        <% }); %>
+      </select>
+      <button type="submit"> Make Enrollment</button>
+    </form>
+
+
+</div>

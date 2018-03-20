@@ -34,6 +34,22 @@ $.ajax ({
     }
   });
 });
+$("ul").on('click','.show', function(e) {
+  $target = $(e.target);
+  var type=$(this).attr("data-type");
+  console.log(type);
+
+$.ajax ({
+  method: 'get',
+  url: `${type}`,
+  success :function(response) {
+  console.log(response)
+  },
+  error: function(err) {
+    console.log(err);
+    }
+  });
+});
 
 $('#student_form').on('submit', function(e) {
   e.preventDefault();
