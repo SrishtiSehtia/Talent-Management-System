@@ -1,0 +1,14 @@
+<script src= "/scripts/join.js"></script>
+
+<h1>hello world</h1>
+
+<ul class="formPadding">
+    <% enrollment.forEach(function(val){ %>
+    <li id='<%=val._id %>'><%= val._course%> <%= val._student%>
+      <div class="">
+      <button type="button" name="button" class="btn btn-primary">Edit</button>
+      <button class="btn btn-primary delete" type="button" name="button" data-id='<%= val._id %>' data-type='/api/students/' >Delete</button>
+    </div>
+    </li>
+    <% }); %>
+</ul>
