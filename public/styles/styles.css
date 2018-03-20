@@ -1,3 +1,22 @@
 .background {
   background-image: linear-gradient(to right top, #995bab, #876eba, #777ec3, #6c8cc5, #6b98c4);
 }
+
+
+
+
+.container{
+  text-align: center;
+}
+
+.mb-5{
+  margin-bottom: 0!important;
+}
+
+.buttonAlign {
+  padding: 50px;
+}
+
+.rowSpace{
+  margin: 25px;
+}

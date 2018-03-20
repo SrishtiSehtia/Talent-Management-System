@@ -1,40 +1,38 @@
 
 $(document).ready(function(){
-console.log('okay');
-$('.classes').hide();
+  console.log('okay');
+  $('.classes').hide();
 
-$('.students').hide();
+  $('.students').hide();
 
-$('#show_all_students').on('click',function(){
-$('.classes').hide();
-$('.students').show();
-$('#student_form').show();
+  $('#show_all_students').on('click',function(){
+  $('.classes').hide();
+  $('.students').show();
+  $('#student_form').show();
 
 });
+
 $('#show_all_classes').on('click',function(){
-
-$('.students').hide();
-$('.classes').show();
-
+  $('.students').hide();
+  $('.classes').show();
 });
 
 $("ul").on('click','.delete', function(e) {
-$target = $(e.target);
-var type=$(this).attr("data-type");
-var id  = $(this).attr("data-id");
-console.log(id);
+  $target = $(e.target);
+  var type=$(this).attr("data-type");
+  var id  = $(this).attr("data-id");
+  console.log(id);
 
 $.ajax ({
-type: 'DELETE',
-url: `${type}${id}`,
-success :function(response) {
-$(`#${id}`).remove();
-},
-error: function(err) {
-console.log(err);
-}
-});
-
+  type: 'DELETE',
+  url: `${type}${id}`,
+  success :function(response) {
+    $(`#${id}`).remove();
+  },
+  error: function(err) {
+    console.log(err);
+    }
+  });
 });
 
 $('#student_form').on('submit', function(e) {
@@ -59,9 +57,9 @@ $('#student_form').on('submit', function(e) {
 
 
 $('#course_form').on('submit', function(e) {
-  e.preventDefault();
-  console.log('new student serialized', $(this).serializeArray());
-$.ajax({
+    e.preventDefault();
+    console.log('new student serialized', $(this).serializeArray());
+  $.ajax({
   method: 'POST',
   url: '/api/courses',
   data: $(this).serializeArray(),
@@ -79,3 +77,7 @@ $.ajax({
 });
 
 });
+
+
+
+$('')
