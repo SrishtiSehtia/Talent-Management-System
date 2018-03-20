@@ -54,9 +54,6 @@ app.get('/courses', function(req, res) {
 });
 
 
-
-
-
 // //find all classes a student took
 // db.Enrollment.find({_user: userID}, function(err, succ){
 //   succ
@@ -67,6 +64,7 @@ app.get('/courses', function(req, res) {
 // })
 
 // API ROUTES
+
 //get all enrollment
 app.get('/api/enrollment', function (req,res){
   console.log("I work for enrolment");
@@ -80,6 +78,31 @@ app.get('/api/enrollment', function (req,res){
 });
 
 
+
+
+// get all courses that a student has
+// This route expects the student and course id to be included
+app.get('/api/enrollment/students/:studentId', function(req,res){
+  console.log("I work enrollment student");
+  var studentId = req.params.studentId;
+  Enrollment.find({_student: studentId}).populate('_course').exec(function(err,all){
+    res.json(all);
+  });
+});
+////////////////////////*******KAY********///////////////////////////////////
+//get all students that in one course
+app.get('/api/enrollment/courses/:courseId', function(req,res){
+  console.log("I work enrollment course");
+  console.log(courseId);
+  var courseId = req.params.courseId;
+  Enrollment.find({_course: courseId}).populate('_student').exec(function(err,all){
+    res.json(all);
+  });
+});
+//////////////////////////////////////////////////////////////////
+
+
+//get all enrollment objects
 app.post('/api/enrollment', function (req,res){
   // res.send("Apple");
   console.log("I work in creating enrollment list");
@@ -96,32 +119,22 @@ app.post('/api/enrollment', function (req,res){
 });
 
 
-
-// get all courses that a student has
-app.get('/api/enrollment/er_:id/students/cr_:id', function(req,res){
-  console.log("I work enr student");
-  var studentId = req.param.id;
-  Enrollemnt.find({_student: studentId}, (err, succ) => {res.json(succ);});
-  // var std_in_crs = Enrollment.find({courseId});
-});
-
-//get all students that in one course
-app.get('/api/enrollment/er_:id/courses/st_:id', function(req,res){
-  console.log("I work enr course");
-  var courseId = req.param.id;
-  Enrollment.find({_course: courseId}, (err, succ) => {res.json(succ);});
-  // var std_in_crs = Enrollment.find({courseId});
-});
-
-
-
-//put
 app.put('/api/enrollment/courses/:id'), function (rec, res){
   console.log("Creating a new ");
 }
-//delete
 
 
+//delete enrollment
+app.delete('/api/enrollment/:id', function(req, res){
+  console.log('enrollment deleted', req.params);
+  var enrollmentId = req.params.id;
+  Enrollment.findOneAndRemove({_id: enrollmentId}, function(err, deletedEnrollment){
+    if(err){
+      res.status(500);
+    }
+    res.status(200).json(deletedEnrollment)
+  });
+});
 
 
 //get all students
