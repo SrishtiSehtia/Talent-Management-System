@@ -179,3 +179,18 @@ body {
   background-color: white;
   border: 2px solid #84deb9;
 }
+
+.classes ul{
+list-style-type: none;
+}
+.classes li{
+  font-size: 2em;
+}
+
+.spaceRow{
+  margin: 1em;
+}
+
+.padding {
+  padding: 1em;
+}

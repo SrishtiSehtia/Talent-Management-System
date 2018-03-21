@@ -3,35 +3,35 @@ var db = require('./models');
 var students = [
   {
     FirstName: "DJ", LastName: "JD", email: "student1@gmail.com",
-    password: "123"
+    password: "123", role: "Student"
   } ,
   {
     FirstName: "Halim", LastName: "Apple", email: "student2@gmail.com",
-     password: "456"
+     password: "456", role: "Student"
   } ,
   {
     FirstName: "Gohan",LastName: "Go", email: "student3@gmail.com",
-    password: "789"
+    password: "789", role: "Student"
   },
   {
     FirstName: "Tomas",LastName: "Vargas", email: "student3@gmail.com",
-    password: "789"
+    password: "789", role: "Student"
   },
   {
     FirstName: "Luis",LastName: "Vargas", email: "student3@gmail.com",
-    password: "789"
+    password: "789", role: "Student"
   },
   {
     FirstName: "Desiree",LastName: "Leader", email: "student3@gmail.com",
-    password: "789"
+    password: "789", role: "Student"
   },
   {
     FirstName: "Ania",LastName: "LCF", email: "student3@gmail.com",
-    password: "789"
+    password: "789", role: "Student"
   },
   {
     FirstName: "Srishti",LastName: "Good", email: "student3@gmail.com",
-    password: "789"
+    password: "789", role: "Student"
   },
 ];
 
