@@ -65,9 +65,12 @@ app.get('/join', function (req, res) {
       });
     }
   });
-
-
 });
+
+
+
+
+
 
 // get Route
 app.get('/courses', function(req, res) {
@@ -80,8 +83,8 @@ app.get('/courses', function(req, res) {
     }
   });
 });
-
-app.get('/students/:id/classes',function(req,res){
+// Showing a student's class
+app.get('/students/:id',function(req,res){
   var id = req.params.id;
 
   Enrollment.find({ _student: id})
@@ -91,6 +94,16 @@ app.get('/students/:id/classes',function(req,res){
     });
 });
 
+
+app.get('/courses/:id',function(req,res){
+  var id = req.params.id;
+
+  Enrollment.find({ _course: id})
+    .populate("_student")
+    .exec(function(err, allStudentClasses){
+      res.render("showClass",{ enrollments: allStudentClasses});
+    });
+});
 // app.get('/api/enrollments/students/:studentId', function(req, res) {
 //   Enrollment.find(function (err, allCourses) {
 //     if (err){
