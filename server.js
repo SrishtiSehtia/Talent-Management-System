@@ -49,23 +49,24 @@ app.get('/students', function (req, res) {
 
 app.get('/join', function (req, res) {
   console.log("hello student");
-  Enrollment.find(function (err, allEnrollment) {
+  Student.find(function (err, allStudents) {
     if (err) {
       res.status(500).json({ error: err.message, });
     } else {
-      console.log(allEnrollment);
-
+      console.log(allStudents);
       Course.find(function (err, allCourses) {
         if (err){
           res.status(500).json({ error: err.message});
         } else {
           console.log(allCourses);
           console.log("Courses in index")
-          res.render("join", { enrollment: allEnrollment, courses: allCourses});
+          res.render("join", { courses: allCourses, students: allStudents});
         }
       });
     }
   });
+
+
 });
 
 // get Route
@@ -79,6 +80,27 @@ app.get('/courses', function(req, res) {
     }
   });
 });
+
+app.get('/students/:id/classes',function(req,res){
+  var id = req.params.id;
+
+  Enrollment.find({ _student: id})
+    .populate("_course")
+    .exec(function(err, allStudentClasses){
+      res.render("show",{ enrollments: allStudentClasses});
+    });
+});
+
+// app.get('/api/enrollments/students/:studentId', function(req, res) {
+//   Enrollment.find(function (err, allCourses) {
+//     if (err){
+//       res.status(500).json({ error: err.message});
+//     } else {
+//       console.log(allCourses);
+//       res.render("index", { courses: allCourses});
+//     }
+//   });
+// });
 
 // app.get('/courses', function(req, res) {
 //   Course.find(function (err, allCourses) {
@@ -148,9 +170,9 @@ app.post('/api/enrollments', function (req,res){
     _course: req.body.courseId,
     _student: req.body.studentId
   },function(err, succ){
-    if(err,succ){
+    if(err){
         res.status(500).send(err);
-      }else
+      }
     // res.status(200).send(JSON.stringify(succ));
     res.status(200).json(succ);
    });
