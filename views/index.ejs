@@ -68,6 +68,7 @@
             <button type="button" name="button" class="btn btn-primary">Edit</button>
             <button type="button" name="button" class="btn btn-primary show"  data-type='/api/enrollments/students/<%= val._id %>'> Classes</button>
             <button class="btn btn-primary delete" type="button" name="button" data-id='<%= val._id %>' data-type='/api/students/' >Delete</button>
+            <a href="/students/<%= val._id %>"> click meeeeeee</a>
           </div>
           </li>
           <% }); %>
@@ -94,7 +95,9 @@
       <li id='<%=val._id %>'><%= val.Name%> <%= val.Description%>
         <div>
         <button type="button" name="button" class="btn btn-primary">Edit</button>
+        <button type="button" name="button" class="btn btn-primary show"  data-type='/api/enrollments/courses/<%= val._id %>'> students</button>
         <button class="btn btn-primary delete" type="button" name="button" data-id='<%= val._id %>' data-type='/api/students/' >Delete</button>
+        <a href="/courses/<%= val._id %>"> click meeeeeee</a>
         </div
       </li>
       <% }); %>
