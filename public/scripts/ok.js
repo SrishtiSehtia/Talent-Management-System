@@ -17,7 +17,7 @@ $('#show_all_classes').on('click',function(){
   $('.classes').show();
 });
 
-$("ul").on('click','.delete', function(e) {
+$("div").on('click','.delete', function(e) {
   $target = $(e.target);
   var type=$(this).attr("data-type");
   var id  = $(this).attr("data-id");
@@ -34,7 +34,7 @@ $.ajax ({
     }
   });
 });
-$("ul").on('click','.show', function(e) {
+$("div").on('click','.show', function(e) {
   $target = $(e.target);
   var type=$(this).attr("data-type");
   console.log(type);
@@ -60,7 +60,7 @@ $('#student_form').on('submit', function(e) {
     data: $(this).serializeArray(),
     success: function(response) {
       console.log(response);
-      $('.students ul').append(`<li id='${response._id}'>${response.FirstName} ${response.LastName}
+      $('.students div').append(`<li id='${response._id}'>${response.FirstName} ${response.LastName}
       <button type="button" name="button" class="btn btn-primary">Edit</button>
       <button class="btn btn-primary delete" type="button" name="button" data-id='${response._id}' data-type='/api/students/' >Delete</button>
       </li>`)
@@ -81,10 +81,20 @@ $('#course_form').on('submit', function(e) {
   data: $(this).serializeArray(),
   success: function(response) {
     console.log(response);
-    $('.classes ul').append(`<li id='${response._id}'>${response.Name} ${response.Description}
+    $('.classes div').append(`
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+      <h5 class="card-title" id='${response._id}'>${response.Name}</h5>
+    <p class="card-text">${response.Description}</p>
+
     <button type="button" name="button" class="btn btn-primary">Edit</button>
+    <a href="/courses/${response._id}" class="btn btn-primary"> Students</a>
     <button class="btn btn-primary delete" type="button" name="button" data-id='${response._id}' data-type='/api/courses/' >Delete</button>
-    </li>`)
+    </div>
+</div>
+</div>
+    `)
   },
   error: function(err) {
     console.log(err);
