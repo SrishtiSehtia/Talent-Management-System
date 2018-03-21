@@ -49,6 +49,7 @@
         </div>
       </div>
   </div>
+<div class="container">
 
   <div class='students'>
       <form action=""id="student_form" class="form-inline" method="POST">
@@ -91,15 +92,18 @@
     </form>
     <ul >
       <% courses.forEach(function(val){ %>
-      <li id='<%=val._id %>'><%= val.Name%> <%= val.Description%>
-        <div>
+      <li class="" id='<%=val._id %>'> <p>Name:<%= val.Name%></p>
+         <p>Description: <%= val.Description%></p>
+          <p>Category: <%= val.Description%></p>
+      </li>
+      <div class="spaceRow">
         <button type="button" name="button" class="btn btn-primary">Edit</button>
         <a href="/courses/<%= val._id %>" class="btn btn-primary"> Students</a>
         <button class="btn btn-primary delete" type="button" name="button" data-id='<%= val._id %>' data-type='/api/students/' >Delete</button>
-        </div
-      </li>
+      </div>
       <% }); %>
     </ul>
 
+  </div>
 
 </div>

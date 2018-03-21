@@ -1,19 +1,28 @@
-<h1>Student Name</h1>
+<div class="container">
+  <div class="padding">
+    <h1>Student Name</h1>
+    <h2>students classes</h2>
+  </div>
 
-<h2>students classes</h2>
+  <div class="row padding">
+    <% enrollments.forEach(function(val){ %>
+      <% val = val._course%>
+      <div class="col-sm-6">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title"id='<%=val._id %>'><%= val.Name%> </h5>
+            <p class="card-text"> <%= val.Description%></p>
+            <a href="#" class="btn btn-primary">Edit</a>
+            <a href="#" class="btn btn-primary">Delete</a>
+          </div>
+        </div>
+      </div>
+        <% }); %>
+  </div>
 
 
+  <div class=" padding">
+    <a href="/students" class="btn btn-primary"> Dashboard</a>
+  </div>
 
-<ul >
-  <% enrollments.forEach(function(val){ %>
-    <% val = val._course%>
-  <li id='<%=val._id %>'><%= val.Name%> <%= val.Description%>
-    <div>
-    <button type="button" name="button" class="btn btn-primary">Edit</button>
-    <button class="btn btn-primary delete" type="button" name="button" data-id='<%= val._id %>' data-type='/api/students/' >Delete</button>
-    </div
-  </li>
-  <% }); %>
-</ul>
-
-<a href="/students"> Dashboard</a>
+</div>

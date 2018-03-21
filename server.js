@@ -92,6 +92,11 @@ app.get('/students/:id',function(req,res){
     .exec(function(err, allStudentClasses){
       res.render("show",{ enrollments: allStudentClasses});
     });
+    // Enrollment.find({ _course: id})
+    //   .populate("_student")
+    //   .exec(function(err, allStudentClasses){
+    //     res.render("show",{ enrollments: allStudentClasses});
+    //   });
 });
 
 
