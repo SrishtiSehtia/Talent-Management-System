@@ -1,14 +1,12 @@
 <script src= "/scripts/join.js"></script>
 <div class="container">
 
-
-<h1>hello world</h1>
-
+  <h1>Add students to courses</h1>
     <form class="" action="/api/enrollments" method="post">
-      <select name="studentId">
+      <select class="selectpicker" name="studentId">
         <!-- <option value="volvo">Volvo</option> -->
         <% students.forEach(function(val){ %>
-          <option value="<%= val._id %>"> <%= val.FirstName + " " + val.LastName %></option>
+          <option data-content="<span class='label label-success'>Relish</span>" value="<%= val._id %>"> <%= val.FirstName + " " + val.LastName %></option>
         <% }); %>
 
       </select>
