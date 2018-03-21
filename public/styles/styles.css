@@ -184,7 +184,13 @@ body {
 list-style-type: none;
 }
 .classes li{
-  font-size: 2em;
+  font-size: 1.5em;
+}
+.students ul{
+list-style-type: none;
+}
+.students li{
+  font-size: 2.5em;
 }
 
 .spaceRow{
@@ -193,4 +199,8 @@ list-style-type: none;
 
 .padding {
   padding: 1em;
+}
+.center{
+  text-align: center;
+
 }
