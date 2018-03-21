@@ -81,6 +81,16 @@ app.get('/courses', function(req, res) {
   });
 });
 
+app.get('/students/:id/classes',function(req,res){
+  var id = req.params.id;
+
+  Enrollment.find({ _student: id})
+    .populate("_course")
+    .exec(function(err, allStudentClasses){
+      res.render("show",{ enrollments: allStudentClasses});
+    });
+});
+
 // app.get('/api/enrollments/students/:studentId', function(req, res) {
 //   Enrollment.find(function (err, allCourses) {
 //     if (err){
