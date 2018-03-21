@@ -4,8 +4,6 @@
  font-size: 12px;
  font-weight: 200;
  background-color: #2e353d;
- position: fixed;
- top: 0px;
  width: 300px;
  height: 100%;
  color: #e1ffff;
@@ -143,10 +141,15 @@ body {
  margin: 0px;
  padding: 0px;
  background: linear-gradient(to right top, #f4f5f2, #dbecd6, #b6e5c2, #84deb9, #25d6bc) no-repeat center center fixed;
+ display: flex;
+ flex-direction: row;
+ height: 100%;
 }
 
 .pagebody {
-  float: right;
+  /* float: right; */
+  flex: 1 0 auto;
+  overflow: scroll;
 }
 
 .clearfix {
@@ -167,4 +170,8 @@ body {
 
 .rowSpace{
   margin: 25px;
+}
+
+#student_section {
+  margin-left: 500px;
 }
