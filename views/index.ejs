@@ -66,6 +66,7 @@
           <li id='<%=val._id %>'><%= val.FirstName%> <%= val.LastName%>
             <div class="">
             <button type="button" name="button" class="btn btn-primary">Edit</button>
+            <button type="button" name="button" class="btn btn-primary show"  data-type='/api/enrollments/students/<%= val._id %>'> Classes</button>
             <button class="btn btn-primary delete" type="button" name="button" data-id='<%= val._id %>' data-type='/api/students/' >Delete</button>
           </div>
           </li>

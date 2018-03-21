@@ -1,0 +1,25 @@
+<script src= "/scripts/join.js"></script>
+<div class="container">
+
+
+<h1>hello world</h1>
+
+    <form class="" action="/api/enrollments" method="post">
+      <select name="studentId">
+        <!-- <option value="volvo">Volvo</option> -->
+        <% students.forEach(function(val){ %>
+          <option value="<%= val._id %>"> <%= val.FirstName + " " + val.LastName %></option>
+        <% }); %>
+
+      </select>
+      <select name="courseId">
+        <!-- <option value="volvo">Volvo</option> -->
+        <% courses.forEach(function(val){ %>
+          <option value="<%= val._id %>"> <%= val.Name %></option>
+        <% }); %>
+      </select>
+      <button type="submit"> Make Enrollment</button>
+    </form>
+
+
+</div>
